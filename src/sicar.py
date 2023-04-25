@@ -250,6 +250,9 @@ class Sicar(Tesseract):
 
     def download_all_from_list(self, base_folder: str = None, debug: bool = False):
 
+        # using list of states from environment or by default from hardcode
+        self.__states = os.environ.get('STATES').split(",") if os.environ.get('STATES') else self.__states
+
         for state in self.__states:
             folder="{0}/{1}".format(base_folder,state)
             Path(folder).mkdir(parents=True, exist_ok=True)
